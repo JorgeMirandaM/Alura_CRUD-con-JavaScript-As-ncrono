@@ -1,9 +1,19 @@
 {
   "perfil": [
     {
-      "nombre": "Jorge Miranda",
-      "email": "Jorge@alura.com",
-      "id": 1
+      "nombre": "Jorge Miranda Morones",
+      "email": "jorge@gmail.com",
+      "id": "1"
+    },
+    {
+      "nombre": "Genaro Miranda Morones",
+      "email": "genaro@gmail.com",
+      "id": "2"
+    },
+    {
+      "nombre": "thorgohankia",
+      "email": "thor@gmail.com",
+      "id": "df61cf69-ede8-4ffb-aaf9-040d854be079"
     }
   ]
 }
