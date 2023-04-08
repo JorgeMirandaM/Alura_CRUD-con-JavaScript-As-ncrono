@@ -6,7 +6,13 @@ formulario.addEventListener('submit',(e)=>{
     e.preventDefault();
     const nombre= document.querySelector("[data-nombre]").value;
     const email=document.querySelector("[data-email]").value;
-    clientServices.crearCliente(nombre,email).then(()=>{
+
+    try{
+        const respuesta=clientServices.crearCliente(nombre,email);
         window.location.href="/screens/registro_completado.html";
-    }).catch(err=>console.log(err))
+    }catch(e){
+        console.log(e)
+    }
+
+    
 })

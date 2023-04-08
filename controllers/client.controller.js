@@ -1,7 +1,6 @@
 import { clientServices } from "../service/client-service.js";
 
-
-const crearNuevaLinea = (nombre, email,id) => {
+const crearNuevaLinea = (nombre, email, id) => {
   const linea = document.createElement("tr");
   const contenido = `
               <td class="td" data-td>${nombre}</td>
@@ -29,27 +28,32 @@ const crearNuevaLinea = (nombre, email,id) => {
             
       `;
   linea.innerHTML = contenido;
-  const btn=linea.querySelector("button");
-  btn.addEventListener("click",()=>{
+  const btn = linea.querySelector("button");
+  btn.addEventListener("click", async () => {
     const id = btn.id;
-    clientServices.eliminarCliente(id).then(respuesta=>{
+    try{
+      const respuesta= await clientServices.eliminarCliente(id)
       console.log(respuesta)
-    }).catch(error => alert('Ocurrio un error'))
-  })
+    }catch(e){
+      alert('Ocurrio un error')
+    }
+  });
   return linea;
 };
 
 const table = document.querySelector("[data-table]");
 
-clientServices.listaClientes()
-  .then((data) => {
-    data.forEach(({ nombre, email,id }) => {
-      const nuevaLinea = crearNuevaLinea(nombre, email,id);
+const listarClientes = async () => {
+  try {
+    const data = await clientServices.listaClientes();
+
+    data.forEach(({ nombre, email, id }) => {
+      const nuevaLinea = crearNuevaLinea(nombre, email, id);
       table.appendChild(nuevaLinea);
     });
-  })
-  .catch((error) => {
+  } catch (e) {
     alert("Ocurrio un error");
-  });
+  }
+};
 
-
+listarClientes();
